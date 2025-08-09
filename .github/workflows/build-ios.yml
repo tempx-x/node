@@ -24,12 +24,12 @@ jobs:
           SDKROOT=$(xcrun --sdk iphoneos --show-sdk-path)
           echo "SDKROOT=$SDKROOT" >> $GITHUB_ENV
           echo "CC=clang -arch arm64 -isysroot $SDKROOT" >> $GITHUB_ENV
-          echo "CXX=clang++ -arch arm64 -isysroot $SDKROOT -std=c++20" >> $GITHUB_ENV
+          echo "CXX=clang++ -arch arm64 -isysroot $SDKROOT -std=c++14" >> $GITHUB_ENV
           echo "CPP=clang -E -arch arm64 -isysroot $SDKROOT" >> $GITHUB_ENV
           echo "LD=ld" >> $GITHUB_ENV
           echo "AR=ar" >> $GITHUB_ENV
           echo "CFLAGS=-arch arm64 -isysroot $SDKROOT -miphoneos-version-min=12.0" >> $GITHUB_ENV
-          echo "CXXFLAGS=-arch arm64 -isysroot $SDKROOT -miphoneos-version-min=12.0 -std=c++11" >> $GITHUB_ENV
+          echo "CXXFLAGS=-arch arm64 -isysroot $SDKROOT -miphoneos-version-min=12.0 -std=c++14" >> $GITHUB_ENV
           echo "LDFLAGS=-arch arm64 -isysroot $SDKROOT -miphoneos-version-min=12.0" >> $GITHUB_ENV
 
     
