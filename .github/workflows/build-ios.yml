@@ -25,7 +25,7 @@ jobs:
             --dest-cpu=arm64 \
             --dest-os=ios \
             --cross-compiling \
-            --dest-cpu=arm64
+            -Dhost_os='macos'
 
       - name: Build Node.js
         run: |
