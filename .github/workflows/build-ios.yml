@@ -19,12 +19,23 @@ jobs:
         run: |
           brew install autoconf automake libtool python@3.10
 
+      - name: Set Environment Variables
+        run: |
+          export SDKROOT=$(xcrun --sdk iphoneos --show-sdk-path)
+          export CC="clang -arch arm64 -isysroot $SDKROO"
+          export CXX="clang++ -arch arm64 -isysroot $SDKROOT"
+          export LD="ld -arch arm64 -syslibroot $SDKROOT"
+          export CFLAGS="-arch arm64 -isysroot $SDKROOT"
+          export CXXFLAGS="$CFLAGS"
+          export LDFLAGS="$CFLAGS"
+
       - name: Configure for iOS (arm64)
         run: |
           ./configure \
             --dest-cpu=arm64 \
             --dest-os=ios \
             --cross-compiling \
+            --openssl-no-asm \
             -Dhost_os='macos'
 
       - name: Build Node.js
