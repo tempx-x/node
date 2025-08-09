@@ -22,12 +22,14 @@ jobs:
       - name: Set Environment Variables
         run: |
           export SDKROOT=$(xcrun --sdk iphoneos --show-sdk-path)
-          export CC="clang -arch arm64 -isysroot $SDKROO"
+          echo "SDKROOT=$SDKROOT"
+          export CC="clang -arch arm64 -isysroot $SDKROOT"
           export CXX="clang++ -arch arm64 -isysroot $SDKROOT"
-          export LD="ld -arch arm64 -syslibroot $SDKROOT"
-          export CFLAGS="-arch arm64 -isysroot $SDKROOT"
+          export CPP="clang -E -arch arm64 -isysroot $SDKROOT"
+          export LD="ld"
+          export CFLAGS="-arch arm64 -isysroot $SDKROOT -miphoneos-version-min=12.0"
           export CXXFLAGS="$CFLAGS"
-          export LDFLAGS="$CFLAGS"
+          export LDFLAGS="-arch arm64 -isysroot $SDKROOT -miphoneos-version-min=12.0"
 
       - name: Configure for iOS (arm64)
         run: |
@@ -36,6 +38,7 @@ jobs:
             --dest-os=ios \
             --cross-compiling \
             --openssl-no-asm \
+            --without-intl \
             -Dhost_os='macos'
 
       - name: Build Node.js
