@@ -41,7 +41,7 @@ jobs:
             --cross-compiling \
             --openssl-no-asm \
             --without-intl \
-            -Dhost_os='macos'
+            -Dhost_os='mac'
 
       - name: Build Node.js
         run: |
