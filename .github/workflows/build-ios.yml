@@ -40,6 +40,7 @@ jobs:
             --dest-os=ios \
             --cross-compiling \
             --openssl-no-asm \
+            --without-intl \
             -Dhost_os='macos'
 
       - name: Build Node.js
